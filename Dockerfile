@@ -38,6 +38,12 @@ RUN pip install runpod requests
 # Support for the network volume
 ADD src/extra_model_paths.yaml ./
 
+# Install WanVideo Wrapper
+WORKDIR /custom_nodes
+RUN git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
+WORKDIR /ComfyUI-WanVideoWrapper
+RUN pip install -r requirements.txt
+
 # Go back to the root
 WORKDIR /
 
