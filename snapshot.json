@@ -5,7 +5,7 @@
             "hash": "908a1009d25a85bae7caeba534046153ef04f97d",
             "disabled": false
         },
-        "https://github.com/kijai/ComfyUI-WanVideoWrapper": {
+        "https://github.com/kijai/ComfyUI-WanVideoWrapper.git": {
             "hash": "7f1446b7aa8f8f7fca78228457a5ecf027c6b113",
             "disabled": false
         }
