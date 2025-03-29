@@ -39,9 +39,9 @@ RUN pip install runpod requests
 ADD src/extra_model_paths.yaml ./
 
 # Install WanVideo Wrapper
-WORKDIR /custom_nodes
+WORKDIR /comfyui/custom_nodes
 RUN git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
-WORKDIR /ComfyUI-WanVideoWrapper
+WORKDIR /comfyui/custom_nodes/ComfyUI-WanVideoWrapper
 RUN pip install -r requirements.txt
 
 # Go back to the root
