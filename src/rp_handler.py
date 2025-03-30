@@ -244,22 +244,23 @@ def process_output_images(outputs, job_id):
     # expected image output folder
     local_image_paths = list(map(lambda image: f"{COMFY_OUTPUT_PATH}/{image}", output_images))
 
-    print(f"runpod-worker-comfy - {output_images}")
+    print(f"runpod-worker-comfy - {local_image_paths}")
 
     # The image is in the output folder
     result_images = []
-    if os.environ.get("BUCKET_ENDPOINT_URL", False):
-        # URL to image in AWS S3
-        result_images = rp_upload.files(job_id, local_image_paths)
-        print(
-            "runpod-worker-comfy - the image was generated and uploaded to AWS S3"
-        )
-    else:
-        # base64 image
-        result_images = map(base64_encode, result_images)
-        print(
-            "runpod-worker-comfy - the image was generated and converted to base64"
-        )
+    for i, local_image_path in enumerate(local_image_paths):
+        if os.environ.get("BUCKET_ENDPOINT_URL", False):
+            # URL to image in AWS S3
+            result_images.append(rp_upload.upload_file_to_bucket(f"{job_id}_{i:08d}.png", local_image_path))
+            print(
+                "runpod-worker-comfy - the image was generated and uploaded to AWS S3"
+            )
+        else:
+            # base64 image
+            result_images.append(base64_encode(local_image_path))
+            print(
+                "runpod-worker-comfy - the image was generated and converted to base64"
+            )
         
     return {
         "status": "success",
