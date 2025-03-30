@@ -235,9 +235,10 @@ def process_output_images(outputs, job_id):
     output_images = []
 
     for node_id, node_output in outputs.items():
-        if "images" in node_output:
-            for image in node_output["images"]:
-                output_images.append(os.path.join(image["subfolder"], image["filename"]))
+        print(f"Node Output: {node_output}")
+        # if "images" in node_output:
+        #     for image in node_output["images"]:
+        #         output_images.append(os.path.join(image["subfolder"], image["filename"]))
 
     print(f"runpod-worker-comfy - image generation is done")
 
@@ -251,7 +252,10 @@ def process_output_images(outputs, job_id):
     for i, local_image_path in enumerate(local_image_paths):
         if os.environ.get("BUCKET_ENDPOINT_URL", False):
             # URL to image in AWS S3
-            result_images.append(rp_upload.upload_file_to_bucket(f"{job_id}_{i:08d}.png", local_image_path))
+            result_images.append(rp_upload.upload_file_to_bucket(
+                f"{job_id}_{i:08d}.png", 
+                local_image_path
+            ))
             print(
                 "runpod-worker-comfy - the image was generated and uploaded to AWS S3"
             )
