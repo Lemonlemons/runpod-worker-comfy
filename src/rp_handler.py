@@ -242,7 +242,7 @@ def process_output_images(outputs, job_id):
     print(f"runpod-worker-comfy - image generation is done")
 
     # expected image output folder
-    local_image_paths = map(lambda image: f"{COMFY_OUTPUT_PATH}/{image}", output_images)
+    local_image_paths = list(map(lambda image: f"{COMFY_OUTPUT_PATH}/{image}", output_images))
 
     print(f"runpod-worker-comfy - {output_images}")
 
