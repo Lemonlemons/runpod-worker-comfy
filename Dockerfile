@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     libgl1 \
+    ffmpeg \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -33,7 +34,7 @@ RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 12.4 --nvid
 WORKDIR /comfyui
 
 # Install runpod
-RUN pip install runpod requests
+RUN pip install runpod requests opencv-python
 
 # Support for the network volume
 ADD src/extra_model_paths.yaml ./

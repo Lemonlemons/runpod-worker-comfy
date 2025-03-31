@@ -4,6 +4,10 @@
         "https://github.com/ltdrdata/ComfyUI-Manager.git": {
             "hash": "908a1009d25a85bae7caeba534046153ef04f97d",
             "disabled": false
+        },
+        "https://github.com/kijai/ComfyUI-WanVideoWrapper": {
+            "hash": "58e464d33adc4a96ed7a42126ec46d2b8a218379",
+            "disabled": false
         }
     },
     "cnr_custom_nodes": {
